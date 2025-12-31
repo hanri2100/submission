@@ -243,7 +243,7 @@ cat network_info.txt
 ```
 Screenshot :
 
-<img src="/screenshots/5-a-ifconfig-eth0-ip-route-awk" width="800">
+<img src="/screenshots/5-a-ifconfig-eth0-ip-route-awk.png" width="800">
 
 ### b. Port discovery
 Command :
