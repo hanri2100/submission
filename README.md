@@ -8,6 +8,8 @@ NIM: 1003250023
 Command :
 
 ```bash
+sudo ifconfig eth0 192.168.1.100 netmask 255.255.255.0
+
 uname -a
 
 sudo hostnamectl set-hostname hanri-lab
@@ -235,11 +237,13 @@ grep " install " /var/log/dpkg.log* | grep -E " (nmap|wireshark|tcpdump|aircrack
 Command :
 
 ```bash
-{ ifconfig eth0 | awk '/inet / {print "IP: " $2 "\nNetmask: " $4}'; ip route | awk '/default/ {print "Gateway: " $3}'; } > network_info.txt
+{ ifconfig eth0 | awk '/inet / {print "IP: " $2 "\nNetmask: " $4}'; ip route | awk '/192.168.1.*/ {print "Gateway: " $3}'; } > network_info.txt
+
+cat network_info.txt
 ```
 Screenshot :
 
-<img src="/screenshots/5-a-ifconfig-ip-route.png" width="800">
+<img src="/screenshots/5-a-ifconfig-eth0-ip-route-awk" width="800">
 
 ### b. Port discovery
 Command :
@@ -253,7 +257,7 @@ Screenshot :
 tidak ada port yang sedang LISTEN
 
 ### c. SSH setup & connectivity test
-Command :
+Command di kali linux :
 
 ```bash
 sudo systemctl enable ssh
@@ -261,6 +265,12 @@ sudo systemctl enable ssh
 sudo systemctl start ssh
 
 sudo systemctl status ssh
+```
+
+Command di cmd windows 11 :
+
+```bash
+ssh kali@192.168.1.100
 ```
 Screenshot :
 
@@ -287,7 +297,7 @@ Screenshot :
 Command :
 
 ```bash
-cat /etc/ssh/sshd_config
+grep -E "Port|PermitRootLogin|PasswordAuthentication|PubkeyAuthentication|MaxAuthTries" /etch/ssh/sshd_config
 ```
 Screenshot :
 
@@ -319,6 +329,10 @@ Konfigurasi berikut diterapkan pada file `/etc/ssh/sshd_config` untuk meningkatk
 Command :
 
 ```bash
+sudo nano /etc/hosts
+
+cat /etc/hosts
+
 ping -c 4 kali-lab
 ```
 Screenshot :
