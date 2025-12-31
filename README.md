@@ -362,8 +362,6 @@ Screenshot :
 
 ## KENDALA DAN SOLUSI<br>
 
-### ⚠️ Kendala & Solusi
-
 **Kendala:**
 Gagal melakukan koneksi SSH dari Host (Windows) ke Guest OS (Kali Linux) pada VirtualBox. Hal ini terjadi karena secara default VirtualBox menggunakan mode **NAT**, yang bertindak sebagai firewall dan mencegah koneksi masuk secara langsung dari Host ke VM.
 
