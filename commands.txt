@@ -1,0 +1,56 @@
+===========================================
+DOKUMENTASI: TEXT PROCESSING & SEARCHING
+File: lab_targets.txt
+===========================================
+
+A. GREP PRACTICE
+----------------
+# 1. Menambahkan baris komentar ke file target
+echo "# Ini adalah file target security scan" >> lab_targets.txt
+
+# 2. Mencari kata "security" dan menampilkan nomor baris (-n)
+grep -n "security" lab_targets.txt
+
+# 3. Mencari kata "SECURITY" tanpa memperhatikan huruf besar/kecil (-i)
+grep -i "SECURITY" lab_targets.txt
+
+# 4. Menampilkan baris yang TIDAK mengandung kata "security" (-v)
+grep -v "security" lab_targets.txt
+
+
+B. CUT & AWK PRACTICE
+---------------------
+# 1. Mengambil kolom ke-1 (IP) dengan pemisah titik dua (:) menggunakan CUT
+cut -d: -f1 lab_targets.txt
+
+# 2. Mengambil kolom ke-1 (IP) dengan pemisah titik dua (:) menggunakan AWK
+awk -F ":" '{print $1}' lab_targets.txt
+
+
+C. SORT & UNIQ
+--------------
+# 1. Cek isi file saat ini
+cat lab_targets.txt
+
+# 2. Mengurutkan isi file (sort) lalu menghapus duplikat yang berurutan (uniq)
+sort lab_targets.txt | uniq
+
+# 3. Menghitung jumlah baris unik (wc -l = word count lines)
+sort lab_targets.txt | uniq | wc -l
+
+
+D. PIPELINE PRACTICE
+--------------------
+# 1. Menampilkan file asli untuk perbandingan
+cat lab_targets.txt
+
+# 2. Kombinasi Pipeline: Ambil yang "open", urutkan, lalu hapus duplikat
+cat lab_targets.txt | grep "open" | sort | uniq
+
+PENJELASAN KERJA DARI COMMAND INI: cat lab_targets.txt | grep "open" | sort | uniq
+-----------------------------------------------------------------------------------
+# Step 1: cat lab_targets.txt -> Membaca seluruh isi file.
+# Step 2: | grep "open"       -> Filter: Hanya ambil baris yang ada kata "open".
+# Step 3: | sort              -> Pengurutan: Data diurutkan A-Z (Syarat wajib untuk uniq).
+# Step 4: | uniq              -> Hapus Duplikat: Menghapus baris kembar.
+# HASIL : Daftar target unik yang port-nya terbuka.

@@ -1,0 +1,5 @@
+2025-12-02 21:31:16 install tcpdump:amd64 <none> 4.99.5-2
+2025-12-02 21:32:25 install aircrack-ng:amd64 <none> 1:1.7+git20230807.4bf83f1a-2+b1
+2025-12-02 21:32:33 install burpsuite:amd64 <none> 2025.10.6-0kali1
+2025-12-02 21:32:46 install nmap:amd64 <none> 7.95+dfsg-3kali1
+2025-12-02 21:33:51 install wireshark:amd64 <none> 4.6.0-1

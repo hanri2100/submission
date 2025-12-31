@@ -1,0 +1,16 @@
+Arti Parameter Port, PermitRootLogin, MaxAuthTries, PubkeyAuthentication, PasswordAuthentication pada SSH config (/etc/ssh/sshd_config)
+
+1. Port: 22
+   Port default untuk koneksi SSH. Disarankan diubah untuk menghindari serangan bot otomatis.
+
+2. PermitRootLogin: prohibit-password
+   User Root dilarang login menggunakan password, hanya boleh menggunakan SSH Key.
+
+3. MaxAuthTries: 6
+   Batas maksimal percobaan login yang gagal adalah 6 kali sebelum koneksi diputus.
+
+4. PubkeyAuthentication: yes
+   Mengizinkan autentikasi menggunakan Public Key (kunci digital), metode yang lebih aman.
+
+5. PasswordAuthentication: yes
+   Mengizinkan autentikasi menggunakan password teks biasa.

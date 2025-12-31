@@ -1,0 +1,3 @@
+old hostname : kali
+new hostname : hanri
+command (change hostname): hostnamectl set-hostname hanri-lab
