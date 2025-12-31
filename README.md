@@ -372,9 +372,7 @@ Solusi ini sangat berguna jika Anda ingin menjaga VM tetap terisolasi namun memb
 
 **Solusi 2: Host-Only Adapter (Jaringan Privat Host-to-VM)**
 Solusi terbaik untuk koneksi stabil antara Windows dan Kali Linux tanpa tergantung pada koneksi internet atau router luar.
-* **Langkah:**
-  1. Buka *File > Tools > Network Manager* di VirtualBox untuk memastikan *Host-only Network* sudah ada.
-  2. Di *Settings VM > Network*, ubah "Attached to" menjadi **Host-Only Adapter**.
+* **Langkah:** Buka *File > Tools > Network Manager* di VirtualBox untuk memastikan *Host-only Network* sudah ada. Lalu pada *Settings VM > Network*, ubah "Attached to" menjadi **Host-Only Adapter**.
 * **Kelebihan:** Memberikan IP statis/khusus yang hanya bisa diakses oleh komputer Host. Sangat aman dan stabil untuk keperluan lab lokal.
 
 **Solusi 3: Bridged Adapter (Jaringan Terbuka/Publik)**
