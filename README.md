@@ -363,20 +363,22 @@ Screenshot :
 ## KENDALA DAN SOLUSI<br>
 
 **Kendala:**
-Gagal melakukan koneksi SSH dari Host (Windows) ke Guest OS (Kali Linux) pada VirtualBox. Hal ini terjadi karena secara default VirtualBox menggunakan mode **NAT**, yang bertindak sebagai firewall dan mencegah koneksi masuk secara langsung dari Host ke VM.
+Saat mencoba melakukan SSH dari Windows (Host) ke Kali Linux (Guest), koneksi gagal atau *refused*. Ternyata, penyebabnya adalah pengaturan default VirtualBox yang menggunakan mode **NAT**. Mode ini menyembunyikan IP VM sehingga tidak bisa diakses langsung dari Windows.
 
-**Solusi 1: Port Forwarding (Tetap dalam Mode NAT)**
-Solusi ini sangat berguna jika Anda ingin menjaga VM tetap terisolasi namun membuka satu jalur khusus untuk SSH.
-* **Langkah:** Buka *Settings VM > Network > Advanced > Port Forwarding*. Tambahkan aturan: `TCP`, Host Port `2222`, Guest Port `22`.
-* **Cara Akses:** `ssh user@127.0.0.1 -p 2222`
+Berikut adalah 3 solusi yang saya temukan untuk mengatasi masalah ini:
 
-**Solusi 2: Host-Only Adapter (Jaringan Privat Host-to-VM)**
-Solusi terbaik untuk koneksi stabil antara Windows dan Kali Linux tanpa tergantung pada koneksi internet atau router luar.
-* **Langkah:** Buka *File > Tools > Network Manager* di VirtualBox untuk memastikan *Host-only Network* sudah ada. Lalu pada *Settings VM > Network*, ubah "Attached to" menjadi **Host-Only Adapter**.
-* **Kelebihan:** Memberikan IP statis/khusus yang hanya bisa diakses oleh komputer Host. Sangat aman dan stabil untuk keperluan lab lokal.
+**Solusi 1: Port Forwarding (Tetap pakai NAT)**
+Cara ini saya gunakan jika ingin VM tetap terisolasi tapi port SSH-nya dibuka.
+* **Langkah:** Masuk ke *Settings > Network > Advanced > Port Forwarding*. Saya memetakan port host `2222` ke port guest `22`.
+* **Cara Akses:** Login menggunakan command `ssh user@127.0.0.1 -p 2222`.
 
-**Solusi 3: Bridged Adapter (Jaringan Terbuka/Publik)**
-Solusi ini membuat VM seolah-olah menjadi perangkat fisik terpisah di dalam jaringan WiFi/LAN yang sama.
-* **Langkah:** Di *Settings VM > Network*, ubah "Attached to" menjadi **Bridged Adapter**.
-* **Cara Akses:** Gunakan IP lokal yang didapatkan VM dari router (misal: `192.168.1.xx`).
-* **Catatan:** Bergantung pada ketersediaan DHCP dari router atau hotspot yang Anda gunakan.
+**Solusi 2: Host-Only Adapter (Paling Stabil)**
+Ini solusi favorit saya karena koneksinya privat antara Windows dan VM, jadi tidak terpengaruh koneksi internet/wifi.
+* **Langkah:** Pastikan adapter *Host-only* sudah aktif di *File > Tools > Network Manager*. Setelah itu ganti settingan Network VM menjadi **Host-Only Adapter**.
+* **Hasil:** VM mendapat IP statis yang aman dan selalu bisa diakses dari Windows.
+* **Cara Akses:** Cek IP VM (biasanya `192.168.x.x`) lalu SSH ke IP tersebut.
+
+**Solusi 3: Bridged Adapter (Ikut Jaringan WiFi)**
+Cara ini membuat VM seolah-olah jadi komputer fisik yang terhubung ke WiFi/Router yang sama dengan laptop.
+* **Langkah:** Ubah settingan Network menjadi **Bridged Adapter**.
+* **Cara Akses:** Cek IP VM lalu SSH ke IP tersebut.
