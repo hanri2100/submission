@@ -384,7 +384,7 @@ Berikut adalah 3 solusi yang saya temukan untuk mengatasi masalah ini:
 **Solusi 1: Port Forwarding (Tetap pakai NAT)**
 Cara ini saya gunakan jika ingin VM tetap terisolasi tapi port SSH-nya dibuka.
 * **Langkah:** Masuk ke *Settings > Network > Advanced > Port Forwarding*. Saya memetakan port host `2222` ke port guest `22`.
-* **Cara Akses:** Login menggunakan command `ssh user@127.0.0.1 -p 2222`.
+* **Cara Akses:** Login menggunakan command `ssh user@192.168.x.x -p 2222`.
 
 **Solusi 2: Host-Only Adapter (Paling Stabil)**
 Ini solusi favorit saya karena koneksinya privat antara Windows dan VM, jadi tidak terpengaruh koneksi internet/wifi.
